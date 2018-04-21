@@ -15,15 +15,15 @@ import java.util.stream.Stream;
 @RestController
 public class ProfileAPI {
 
-    @GetMapping("/profile/{id}")
+    @GetMapping("/getprofile")
     Mono<Profile> getProfile(@PathVariable long id) {
         return Mono.just(new Profile("pk", "pk", 23));
     }
 
-    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/profiles")
+    /*@GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/profiles")
     Flux<Profile> getProfiles() {
         Flux<Profile> profileFlux = Flux.fromStream(Stream.generate(() -> new Profile("p", "k", 24)));
         Flux<Long> delayFlux = Flux.interval(Duration.ofSeconds(1));
         return Flux.zip(profileFlux, delayFlux).map(t -> t.getT1());
-    }
+    }*/
 }
