@@ -1,23 +1,29 @@
 package com.bio.profile.controller;
 
 import com.bio.profile.models.Profile;
+import com.bio.profile.services.IProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.awt.*;
-import java.time.Duration;
-import java.util.stream.Stream;
 
 @RestController
 public class ProfileAPI {
 
-    @GetMapping("/getprofile")
-    Mono<Profile> getProfile(@PathVariable long id) {
-        return Mono.just(new Profile("pk", "pk", 23));
+    @Autowired
+    IProfileService profileService;
+
+    @GetMapping("/getprofile/{id}")
+    Mono<Profile> getProfile(@PathVariable String id) {
+        try {
+            return profileService.getProfile(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Mono.just(null);
+        }
+
     }
 
     /*@GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE, value = "/profiles")

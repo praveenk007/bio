@@ -3,7 +3,7 @@ package com.bio.profile.models;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "Profile")
 @Data
 public class Profile {
 
