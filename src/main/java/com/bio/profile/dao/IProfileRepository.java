@@ -1,9 +1,14 @@
 package com.bio.profile.dao;
 
 import com.bio.profile.models.Profile;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.repository.Repository;
 
-@Repository
-public interface IProfileRepository {
-    Profile findById(String name) throws  Exception;
+import java.math.BigInteger;
+
+//@Repository
+public interface IProfileRepository extends Repository<Profile, BigInteger> {
+
+    @Query("{'f_name' : 'Praveen'}")
+    Profile findEnabled() throws  Exception;
 }

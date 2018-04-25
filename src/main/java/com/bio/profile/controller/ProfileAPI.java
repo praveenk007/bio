@@ -15,10 +15,10 @@ public class ProfileAPI {
     @Autowired
     IProfileService profileService;
 
-    @GetMapping("/getprofile/{id}")
-    Mono<Profile> getProfile(@PathVariable String id) {
+    @GetMapping("/getprofile")
+    Mono<Profile> getProfile() {
         try {
-            return profileService.getProfile(id);
+            return profileService.getProfile();
         } catch (Exception e) {
             e.printStackTrace();
             return Mono.just(null);

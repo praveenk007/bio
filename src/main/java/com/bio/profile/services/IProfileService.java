@@ -6,5 +6,5 @@ import reactor.core.publisher.Mono;
 
 public interface IProfileService {
 
-    public Mono<Profile> getProfile(String id) throws Exception;
+    public Mono<Profile> getProfile() throws Exception;
 }

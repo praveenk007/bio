@@ -15,7 +15,9 @@ public class ProfileServiceImpl implements IProfileService {
     IProfileRepository profileRepository;
 
     @Override
-    public Mono<Profile> getProfile(String id) throws Exception {
-        return Mono.just(profileRepository.findById(id));
+    public Mono<Profile> getProfile() throws Exception {
+        Profile profile = profileRepository.findEnabled();
+        System.out.print(profile);
+        return Mono.just(profile);
     }
 }
